@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="assets/css/login.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<link rel="icon" type="image/png" href="assets/images/another/users.png"/>
+
+<title>LOGIN</title>
+<style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+    .row{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+</style>
+<script type="text/javascript">
+    $('document').ready(()=>{
+        $("#email").click(()=>{
+            $("#thongbao").css('display','none');
+        })
+    })
+</script>
+</head>
+<body>
+    <div class="row">
+            <div class="col-sm-12 text-white text-center"  style="background-color:rgb(94, 104, 121);">
+                <img src="assets/images/another/logo.jpg" width='74' height='75'>
+                <h4 class="font-weight-bold">ĐẠI HỌC BÁCH KHOA TPHCM</h4>
+                <h4 class="font-weight-bold">KHOA ĐIỆN ĐIỆN TỬ</h4>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-white text-center"  style="background-color:rgb(23, 64, 141);">
+
+            <h4 class="font-weight-bold">HỆ THỐNG GIẢM SÁT XỬ LÝ NƯỚC NGẦM TRÊN PLC S7 1500 VÀ OPC UA</h4>
+
+        </div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-7" style="background-color:rgb(212, 227, 240);">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ul class="carousel-indicators" align="middle">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+
+            </ul>
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="assets/images/another/home.jpg" style="padding: 15px;">
+                </div>
+                <div class="carousel-item">
+                <img src="assets/images/another/khoadien.jpg"  style="padding: 15px;">
+                </div>
+
+            </div>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+            </div>
+        </div>
+        <div class="col-sm-5" style="background-color:rgb(212, 227, 240);">
+
+            <h3 style="text-align: center;"><b>LOG IN</b></h3><hr>
+            <form action="/" method="post">
+                <div class="form-group-sm">
+                <label for="email">Email:
+                    <% if (message == 'No user found.') { %>
+                        <div role="alert" id="thongbao" style=" background-color: brown;color:white;display: inline;margin-left: 145px;"><%- message %></div>
+                      <% } %>
+                </label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"style="length:80px">
+                </div>
+                <div class="form-group">
+                <label for="pwd">Password:
+                    <% if (message == 'Oops! Wrong password.') { %>
+                        <div role="alert" id="thongbao" style=" background-color: brown;color:white;display: inline;margin-left: 145px;"><%- message %></div>
+                      <% } %>
+                </label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                </div>
+                <div class='row'>
+                <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary btn-sm">Log in</button>
+                </div>
+
+                </div>
+            </form><br>
+            <div style="text-align: center;">
+                <p>Did not have an account yet? Sign up <a href="/signup">here</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+            </div><hr>
+
+    <div class="container-fluid text-center" id="footer" style ="margin-top:5%">
+        © Copyright 2020. All Rights Reserved. Designed by HCMUT Student.
+        <p>Contact us &nbsp;<a href="" class="fa fa-facebook"></a>
+            <a href="" class="fa fa-twitter" ></a>
+            <a href="" class="fa fa-instagram" ></a>
+        </p>
+        </div>
+            <br>
+        </div>
+    </div>
+
+</body>
+</html>

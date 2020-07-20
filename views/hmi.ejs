@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/clock.css">
+    <link rel="icon" type="image/png" href="assets/images/another/aaa.png"/>
+    
+    <title>SCADA</title>
+</head>
+<body id="myPage" >
+    <!--THANH CONG CU-->
+    <div class= "tieude">
+        <nav class="navbar navbar-expand-sm bg-light font-header navbar-light fixed-top">
+            <a class="navbar-brand" href="/hmi" id = "mypageid" style="background-color: #7797bf;width: 148px;"><i class="fa fa-television" aria-hidden="true" style="margin-right: 0px;"></i>
+                <b>SCADA</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <div>
+                    <ul class="navbar-nav congcu">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/hmi" >
+                                HMI
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history" >
+                                HISTORY
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="predict" >
+                               PREDICT
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                <div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><i class="fa fa-sign-out" aria-hidden="true" style="margin-right: 0px;"></i>
+                            <a id="alogin" href="/logout">LogOut</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div style = "text-align: center;background-color:#d7ddee;width: 1366px;margin-top:3px;float: left;" >
+        <h4 style = "font-weight: bolder; border: 4px groove #c3c3d2;"> HỆ THỐNG XỬ LÝ NƯỚC NGẦM TRONG CÔNG NGHIỆP VÀ GIAO THỨC OPC UA</h4>
+    </div>
+    <!--Status-->
+    <div id="divstatus">
+        <div id="backg"></div>
+        <div id = "thongbaotaomoi1">
+            <div class="loading-page">
+                <div class="counter">
+                  <img  class = "responsive" src="assets/images/another/loading.png" alt="loadinglogo" style = "margin-top: 0%;">
+                  <p>LOADING</p>
+                  <h1>0%
+                  </h1>
+                  <hr/>
+                </div>
+              </div>
+        </div>
+        <div class = "container-fluid status">
+            <div class="mot">
+                        <img id = "valve_1_in" class = "hinh1 responsive" src="assets/images/hmi/pumps_on.png" alt="OPCUAserverLOGO" data-toggle="modal" data-target="#myModal">                    
+                        <img id = "error_valve_1_in" class = "hinh200 responsive" src="assets/images/hmi/pumps.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh2 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO" data-toggle="modal" data-target="#myModal"> 
+
+                        <img  class = "hinh3 responsive" src="assets/images/hmi/bon1.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh4 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh5 responsive" src="assets/images/hmi/tank_thai.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh106 responsive" src="assets/images/hmi/thai1.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh107 responsive" src="assets/images/hmi/thai1.png" alt="OPCUAserverLOGO">
+
+                        <!-- <img  class = "hinh6 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">   -->
+
+                        <img  class = "hinh7 responsive" src="assets/images/hmi/valve_off.png" alt="OPCUAserverLOGO" id = "xa_thai_1_in" data-toggle="modal" data-target="#myModal"> 
+
+                        <img  class = "hinh8 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh9 responsive" src="assets/images/hmi/bon2.png" alt="OPCUAserverLOGO">
+
+                        <img  id = "valve_2_in" class = "hinh10 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_2_in" class = "hinh201 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh11 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh12 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh13 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh96 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh97 responsive" src="assets/images/hmi/pipes_7.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh98 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh99 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        
+                        <img  class = "hinh14 responsive" src="assets/images/hmi/valve_hoachat_on.png" alt="OPCUAserverLOGO" id = "cuso4" data-toggle="modal" data-target="#myModal">
+            
+                        <img  class = "hinh100 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh101 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh102 responsive" src="assets/images/hmi/valve_hoachat_on.png" alt="OPCUAserverLOGO" id = "naoh" data-toggle="modal" data-target="#myModal">
+
+                        <img  class = "hinh15 responsive" src="assets/images/hmi/lamthoang_1.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh16 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh17 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh18 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh19 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh20 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh21 responsive" src="assets/images/hmi/lamthoang_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh22 responsive" src="assets/images/hmi/lamthoang_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh23 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" id = "valve_3_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_3_in" class = "hinh202 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh24 responsive" id = "lamthoang" src="assets/images/hmi/lamthoang.png" alt="OPCUAserverLOGO">
+
+                        <!-- <img  class = "hinh25 responsive" src="assets/images/hmi/lamthoang_4.png" alt="OPCUAserverLOGO"> -->
+
+                        <img  class = "hinh26 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh27 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" id = "valve_4_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_4_in" class = "hinh203 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <!-- <img  class = "hinh28 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh29 responsive" src="assets/images/hmi/bon2.png" alt="OPCUAserverLOGO"> -->
+
+                        <img  class = "hinh30 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh31 responsive" src="assets/images/hmi/valve_off.png" alt="OPCUAserverLOGO" id = "xa_thai_2_in" data-toggle="modal" data-target="#myModal"> 
+
+                        <img  class = "hinh32 responsive" src="assets/images/hmi/tank_thai.png" alt="OPCUAserverLOGO">
+
+                        <!-- <img  class = "hinh33 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh34 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh35 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO" id = "valve_clo" data-toggle="modal" data-target="#myModal"> -->
+
+                        <img  class = "hinh36 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh37 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh38 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+                        <!-- TINHSAU -->
+                        <!-- <img  class = "hinh39 responsive" src="assets/images/hmi/valve_pumps_1.png" alt="OPCUAserverLOGO" id = "valve_5" data-toggle="modal" data-target="#myModal"> -->
+
+                        <img  class = "hinh40 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh41 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh42 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh43 responsive" src="assets/images/hmi/bon_phen.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh44 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh45 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh46 responsive" src="assets/images/hmi/valve_hoachat_on.png" alt="OPCUAserverLOGO" id = "pac" data-toggle="modal" data-target="#myModal">
+
+                        <!-- <img  class = "hinh47 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh48 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh49 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO" id = "valve_phen_sat" data-toggle="modal" data-target="#myModal"> -->
+
+                        <!-- <img  class = "hinh50 responsive" src="assets/images/hmi/pipes_6.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh51 responsive" src="assets/images/hmi/pipes_7.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh52 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO"> -->
+
+                        <!-- <img  class = "hinh53 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO"> -->
+
+                        <img  class = "hinh54 responsive" src="assets/images/hmi/motor_khuay_on.png" alt="OPCUAserverLOGO" id = "dong_co" data-toggle="modal" data-target="#myModal">
+
+                        <!-- <img  class = "hinh55 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO"> -->
+
+            
+                        <img  class = "hinh56 responsive" src="assets/images/hmi/valve_off.png" alt="OPCUAserverLOGO" id = "xa_thai_3_in" data-toggle="modal" data-target="#myModal"> 
+                        <img  class = "hinh103 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh57 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh58 responsive" src="assets/images/hmi/pipes_7.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh59 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh60 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh61 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh62 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh63 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh64 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh65 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" id = "valve_5_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_5_in" class = "hinh204 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh66 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh67 responsive" src="assets/images/hmi/tanks.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh68 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh69 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh70 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh104 responsive" src="assets/images/hmi/tankloc.png" alt="OPCUAserverLOGO">
+
+
+                        <img  class = "hinh71 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" id = "valve_6_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_6_in" class = "hinh205 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh72 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <!--  -->
+
+                        <img  class = "hinh74 responsive" src="assets/images/hmi/bon_ozone.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh75 responsive" src="assets/images/hmi/tankhoahoc.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh76 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh77 responsive" src="assets/images/hmi/valve_hoachat_on.png" alt="OPCUAserverLOGO" id = "clo" data-toggle="modal" data-target="#myModal">
+
+                        <img  class = "hinh78 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh79 responsive" src="assets/images/hmi/valve_pumps_on.png"  alt="OPCUAserverLOGO" id = "valve_7_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_7_in" class = "hinh206 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <!-- <img  class = "hinh80 responsive" src="assets/images/hmi/motor_ozone.png" alt="OPCUAserverLOGO" id = "motor_ozone" data-toggle="modal" data-target="#myModal"> -->
+
+                        <img  class = "hinh81 responsive" src="assets/images/hmi/pipes_2.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh105 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO">
+
+                        <!-- <img  class = "hinh82 responsive" src="assets/images/hmi/pipes_5.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh83 responsive" src="assets/images/hmi/pipes_4.png" alt="OPCUAserverLOGO"> -->
+
+                        <img  class = "hinh84 responsive" src="assets/images/hmi/pipes.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh85 responsive" src="assets/images/hmi/pipes_3.png" alt="OPCUAserverLOGO">
+
+                        <img  class = "hinh86 responsive" src="assets/images/hmi/valve_pumps_on.png" alt="OPCUAserverLOGO" id = "valve_8_in" data-toggle="modal" data-target="#myModal">
+                        <img id = "error_valve_8_in" class = "hinh207 responsive" src="assets/images/hmi/valve_pumps_error.png" alt="OPCUAserverLOGO">
+                        <img  class = "hinh87 responsive" src="assets/images/hmi/tank_dan_cu.png" alt="OPCUAserverLOGO">
+                        <img  id ="valve_1_out" class = "hinh123 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_2_out" class = "hinh124 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_3_out" class = "hinh125 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_4_out" class = "hinh126 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_5_out" class = "hinh127 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_6_out" class = "hinh128 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="valve_7_out" class = "hinh129 responsive" src="assets/images/hmi/valve_xa_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="bon_thai_1_out" class = "hinh130 responsive" src="assets/images/hmi/valve_pumps_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        <img  id ="bon_thai_2_out" class = "hinh131 responsive" src="assets/images/hmi/valve_pumps_off.png" alt="OPCUAserverLOGO"data-toggle="modal" data-target="#myModal">
+                        
+                        
+                        <img id = "error_valve_1_out" class = "hinh208 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_2_out" class = "hinh209 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_3_out" class = "hinh210 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_4_out" class = "hinh211 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_5_out" class = "hinh212 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_6_out" class = "hinh213 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_7_out" class = "hinh214 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        
+                        <img id = "error_valve_cuso4" class = "hinh215 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_naoh" class = "hinh216 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_pac" class = "hinh217 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO">
+                        <img id = "error_valve_clo" class = "hinh218 responsive" src="assets/images/hmi/valve_hoachat.png" alt="OPCUAserverLOGO">
+                        <img id = "error_dong_co" class = "hinh219 responsive" src="assets/images/hmi/motor_khuay.png" alt="OPCUAserverLOGO">
+                        <img id = "error_xa_thai_1_in" class = "hinh220 responsive" src="assets/images/hmi/valve_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_xa_thai_2_in" class = "hinh221 responsive" src="assets/images/hmi/valve_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_xa_thai_3_in" class = "hinh222 responsive" src="assets/images/hmi/valve_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_bon_thai_1_out" class = "hinh223 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+                        <img id = "error_bon_thai_2_out" class = "hinh224 responsive" src="assets/images/hmi/valve_xa_error.png" alt="OPCUAserverLOGO">
+
+
+                        <img  class = "hinh88 responsive" src="assets/images/hmi/tudieukhien.png" alt="OPCUAserverLOGO" data-toggle="modal" data-target="#onoff">
+                        <p class = "tudieukhien" > <b>TỦ ĐIỀU KHIỂN</b></p>
+                        <p class = "bangthongso" > <b>BẢNG THÔNG SỐ</b>
+                     
+                            <i id ="show_bangthongso"class="fa fa-window-maximize" style = "cursor: pointer;margin-right: 0px;"aria-hidden="true"></i>
+
+                        </p>
+                            <img  id = "cb_max_bon_1" class = "hinh89 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_1" class = "hinh108 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_2" class = "hinh109 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_2" class = "hinh110 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_3" class = "hinh111 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_3" class = "hinh112 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_4" class = "hinh113 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_4" class = "hinh114 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_5" class = "hinh115 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_5" class = "hinh116 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_6" class = "hinh117 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_6" class = "hinh118 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_muc_can_1" class = "hinh119 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_muc_can_2" class = "hinh120 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_min_bon_7" class = "hinh121 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <img  id = "cb_max_bon_7" class = "hinh122 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            
+                            <!-- <img  id = "sensor_1" class = "hinh89 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb1 cb" > <b>CB MỨC 1</b></p>
+
+                            <img  id = "sensor_2" class = "hinh90 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class= "cb2 cb" > <b>CB MỨC 2</b></p>
+                            <img  id = "sensor_3" class = "hinh91 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb3 cb" > <b>CB MỨC 3</b></p>
+                            <img  id = "sensor_4" class = "hinh92 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb4 cb" > <b>CB MỨC 4</b></p>
+                            <img  id = "sensor_5" class = "hinh93 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb5 cb" > <b>CB MỨC 5</b></p>
+                            <img  id = "sensor_6" class = "hinh94 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb6 cb" > <b>CB MỨC 6</b></p>
+                            <img  id = "sensor_7" class = "hinh95 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb7 cb" > <b>CB MỨC 7</b></p> -->
+                            <!-- <img  id = "sensor_8" class = "hinh96 responsive" src="assets/images/hmi/cb.png" alt="OPCUAserverLOGO">
+                            <p class = "cb8 cb" > <b>CB MỨC 8</b></p> -->
+
+            </div>
+            <div>
+                <p class = "cb1 cb" > <b>(S)</b></p>
+                <p class = "cb2 cb" > <b>(S)</b></p>
+                <p class = "cb3 cb" > <b>(S)</b></p>
+                <p class = "cb4 cb" > <b>(S)</b></p>
+                <p class = "cb44 cb"> <b>(S)</b></p>
+                <p class = "cb6 cbbb" > <b>CUSO4</b></p>
+                <p class = "cb7 cbbb" > <b>NAOH</b></p>
+                <p class = "cb8 cbbb" > <b>PAC</b></p>
+                <p class = "cb9 cbbb" > <b>CLO</b></p>
+                <p class = "cb10 cbbb" > <b>BỂ LÀM THOÁNG</b></p>
+                <p class = "cb11 cbbb" > <b>BỂ PHẢN ỨNG</b></p>
+                <p class = "cb12 cbbb" > <b>BỂ LẮNG</b></p>
+                <p class = "cb13 cbbb" > <b>BỂ LỌC</b></p>
+                <p class = "cb14 cbbb" > <b>BỂ KHỬ</b></p>
+                <p class = "cb15 cbbb" > <b>BÊ CHỨA NGUỒN</b></p>
+                <p class = "cb16 cbbb" > <b>BỂ XL SƠ BỘ</b></p>
+                <p class = "cb18 cbbb" > <b>(m3)</b></p>
+                <p class = "cb5 cbb" > <b>Mực nước trong bồn quan sát dựa trên độ cao mực nước trong bồn (m)</b></p>
+                <p id = "bon_1"></p>
+                <p id = "bon_2"></p>
+                <p id = "bon_3"></p>
+                <p id = "bon_4"></p>
+                <p id = "bon_5"></p>
+                <p id = "bon_6"></p>
+                <p id = "bon_7"></p>
+                <p id = "nuoc_da_xu_ly"></p>
+                <p id = "can_bon_1"></p>
+                <p id = "can_bon_2"></p>
+                <p id = "time_hoatdong"></p>
+                <p id = "time_khu"></p>
+                <p id = "time_khuay"></p>
+                <p id = "time_xa_thai_1"></p>
+                <p id = "time_xa_thai_2"></p>
+                <div id="mydiv" style="float: left;top: 102px;
+                left: 954px;">
+                        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                        <div id="mydivheader">
+                            <i class="fa fa-window-close" style = "float:right;margin-top: -8px; margin-right: 0px"aria-hidden="true"></i>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Lưu lượng bơm(l/s)</th>
+                                <th id="water_flow"></th>
+                            </tr>
+                            <tr>
+                                <th>pH</th>
+                                <th id="pH"></th>
+                            </tr>
+                            <tr>
+                                <th>CuSO4 đã dùng(l)</th>
+                                <th id="ttcuso4"></th>
+                            </tr>
+                            <tr>
+                                <th>NaOH đã dùng(l)</th>
+                                <th id="ttnaoh"></th>
+                            </tr>
+                            <tr>
+                                <th>Oxy hòa tan(mg/l)</th>
+                                <th id="oxy_hoa_tan"></th>
+                            </tr>
+                            <tr>
+                                <th>Nhiệt độ nước(oC)</th>
+                                <th id="temperature"></th>
+                            </tr>
+                            <tr>
+                                <th>Tốc độ ĐC khuấy(rpm)</th>
+                                <th id="speed_dc"></th>
+                            </tr>
+                            <tr>
+                                <th>Clo(l)</th>
+                                <th id="clo_da_dung"></th>
+                            </tr>
+                            <tr>
+                                <th>Set Power Supply DC</th>
+                                <th id="set_up_power_dc">
+                                    <input class="form-control" id="set_up_dc" name="set_up_dc" placeholder="Power" type="text">
+                                </th>
+                            </tr>
+                            <tr id="thongbaonhap1" style="color: red;">
+                                <th>INPUT RANGE </th>
+                                <th>from 0 to 10V</th>
+                            </tr>
+                            <tr>
+                                <th>Set Power Supply Pump 1</th>
+                                <th id="set_up_power_pumps">
+                                    <input class="form-control" id="set_up_pumps" name="set_up_pumps" placeholder="Power" type="text">
+                                </th>
+                            </tr>
+                            <tr id="thongbaonhap2" style="color: red;">
+                                <th>INPUT RANGE</th>
+                                <th>from 0 to 10V</th>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                </div>
+                
+                <!-- modal -->
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-sm">
+                    <div class="modal-content" id="container2">
+                        <!-- Modal Header -->
+                        <div class="modal-header" style = "background-color: lightgray;">
+                        <h4 class="modal-title" id = "name_device_1"></h4>
+                        <h4 class="modal-title" id = "name_device" style = "display:none"></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body" id = "status_device" style = "text-align: center;">
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class = "container" style ="display: inline-flex;padding-bottom: 10px;">
+                            <div id="A" style ="width: 100%;float: left;margin-right: 5%;">
+                                <button type="button" class="btn btn-secondary" style = "width: 100%;" data-dismiss="modal" id="nut_on">ON</button>
+                            </div>
+                            <div id="B" style ="width: 100%;float: right;margin-left: 5%;">
+                                <button type="button" class="btn btn-secondary 2" style = "width: 100%;" data-dismiss="modal" id="nut_off">OFF</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="onoff">
+                    <div class="modal-dialog modal-sm">
+                    <div class="modal-content" id="container2">
+                        <!-- Modal Header -->
+                        <div class="modal-header" style = "background-color: lightgray;">
+                        <h6 class="modal-title" id = "name_tudien"> BẢNG ĐIỀU KHIỂN </h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body" id = "status_device" style = "text-align: center;">
+
+                                <div>
+                                    <img  id="main_switch" class = "responsive" src="assets/images/hmi/stop.png" alt="OPCUAserverLOGO">
+                                </div>
+                                <div id="A" style ="width: 100%;float: left;margin-right: 5%;">
+                                    <p id="name_stop"><b>START/STOP</b></p>
+                                </div>
+                                <div>
+                                    <img  class="test_emer" id="emergency" class = "responsive" src="assets/images/hmi/emergency.png" alt="OPCUAserverLOGO">                       
+                                </div>
+                                <div id="B" style ="width: 100%;float: right;margin-left: 5%;">
+                                    <p id="name_emer"><b>EMERENCY</b></p>
+                                </div>
+                                <div>
+                                    <img  class = "test" id="mode" class = "responsive" src="assets/images/hmi/manu.png" alt="OPCUAserverLOGO"> 
+                                </div>
+                                <div style ="width: 100%">
+                                    <p id="name_auto"><b>AUTO / MANU</b></p>
+                                </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- clock  -->
+            <div id="clock">
+                <p class="date">{{ date }}</p>
+                <p class="time">{{ time }}</p>
+
+            </div>
+        </div>
+    </div>
+  
+    
+    <script src="socket.io/socket.io.js"></script>
+    <script src="assets/js/res_client.js"></script>
+    <script src="assets/js/clock.js"></script>
+</body>
+</html>

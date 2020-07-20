@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" style = "background-color: white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/clock.css">
+    <link rel="icon" type="image/png" href="assets/images/another/bbb.png"/>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <title>HISTORY</title>
+    <script src='assets/js/libraryjs/socket.io.js'></script>
+    <!-- <link href='assets/css/chart.css' rel="stylesheet"> -->
+
+
+
+</head>
+<body id="myPage">
+    <!--THANH CONG CU-->
+    <div class="">
+        <div class= "tieude">
+            <nav class="navbar navbar-expand-sm bg-light font-header navbar-light fixed-top">
+                <a class="navbar-brand" href="/hmi" id = "mypageid" style="background-color: #7797bf;width: 148px;"><i class="fa fa-television" aria-hidden="true" style="margin-right: 0px;"></i>
+                    <b>SCADA</b></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <div>
+                        <ul class="navbar-nav congcu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/hmi" >HMI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/history" >HISTORY</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="predict" >PREDICT</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                    <div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><i class="fa fa-sign-out" aria-hidden="true" style="margin-right: 0px;"></i>
+                                <a id="alogin" href="/logout">LogOut</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+<!--CHARTS-->
+ <div>
+    <div id="lichsu">
+        <div class="row  container-fluid bg-grey table-responsive HA">
+                <table class=" table table-striped .table-bordered ">
+                <thead class="thead-dark">
+                <tr>
+                    <th style="text-align: center;width: 320px;">
+                    
+                        <select class="form-control" id="change_mode" name="change_mode">
+                        <optgroup label = "Choose one">                                       
+                            <option value="1">valve_1_in</option>                               
+                            <option value="2">valve_2_in</option>                               
+                            <option value="3">valve_3_in</option>                               
+                            <option value="4">valve_4_in</option>                               
+                            <option value="5">valve_5_in</option>                               
+                            <option value="6">valve_6_in</option>                               
+                            <option value="7">valve_7_in</option>                               
+                            <option value="8">valve_8_in</option>                               
+                            <option value="9">valve_1_out</option>                               
+                            <option value="10">valve_2_out</option>                               
+                            <option value="11">valve_3_out</option>                               
+                            <option value="12">valve_4_out</option>                               
+                            <option value="13">valve_5_out</option>                               
+                            <option value="14">valve_6_out</option>                               
+                            <option value="15">valve_7_out</option>   
+                            <option value="16">thai_can_bon_1</option> 
+                            <option value="17">thai_can_bon_2</option>                             
+                            <option value="18">xa_thai_1_in</option>                               
+                            <option value="19">xa_thai_2_in</option>                               
+                            <option value="20">xa_thai_3_in</option>                               
+                            <option value="21">cuso4</option>  
+                            <option value="22">naoh</option>  
+                            <option value="23">pac</option>  
+                            <option value="24">dongco</option>  
+                            <option value="25">clo</option>  
+                            <option value="26">valve_1_in_error</option>                               
+                            <option value="27">valve_2_in_error</option>     
+                            <option value="28">valve_3_in_error</option>  
+                            <option value="29">valve_4_in_error</option>  
+                            <option value="30">valve_5_in_error</option>   
+                            <option value="31">valve_6_in_error</option>    
+                            <option value="32">valve_7_in_error</option>       
+                            <option value="33">valve_8_in_error</option>    
+                            <option value="34">valve_1_out_error</option>           
+                            <option value="35">valve_2_out_error</option>  
+                            <option value="36">valve_3_out_error</option>  
+                            <option value="37">valve_4_out_error</option>  
+                            <option value="38">valve_5_out_error</option>  
+                            <option value="39">valve_6_out_error</option>  
+                            <option value="40">valve_7_out_error</option>  
+                            <option value="41">thai_can_bon_1_error</option>   
+                            <option value="42">thai_can_bon_2_error</option>                               
+                            <option value="43">xa_thai_1_in_error</option>  
+                            <option value="44">xa_thai_2_in_error</option>  
+                            <option value="45">xa_thai_3_in_error</option>               
+                            <option value="46">cuso4_error</option>  
+                            <option value="47">naoh_error</option>  
+                            <option value="48">pac_error</option>  
+                            <option value="49">dongco_error</option>  
+                            <option value="50">clo_error</option>  
+                            <option value="51">start/stop</option>  
+                            <option value="52">emergency</option>  
+                            <option value="53">auto/manu</option>  
+                        </optgroup>
+                        </select> 
+                    </th>
+                    <th style="text-align: center;">Time Stamps</th>
+                    <th style="text-align: center;">Status</th>
+                </tr>
+               </thead>
+               <tbody id="1"></tbody>
+               <tbody id="2"></tbody>
+               <tbody id="3"></tbody>
+               <tbody id="4"></tbody>
+               <tbody id="5"></tbody>
+               <tbody id="6"></tbody>
+               <tbody id="7"></tbody>
+               <tbody id="8"></tbody>
+               <tbody id="9"></tbody>
+               <tbody id="10"></tbody>
+               <tbody id="11"></tbody>
+               <tbody id="12"></tbody>
+               <tbody id="13"></tbody>
+               <tbody id="14"></tbody>
+               <tbody id="15"></tbody>
+               <tbody id="16"></tbody>
+               <tbody id="17"></tbody>
+               <tbody id="18"></tbody>
+               <tbody id="19"></tbody>
+               <tbody id="20"></tbody>
+               <tbody id="21"></tbody>
+               <tbody id="22"></tbody>
+               <tbody id="23"></tbody>
+               <tbody id="24"></tbody>
+               <tbody id="25"></tbody>
+               <tbody id="26"></tbody>
+               <tbody id="27"></tbody>
+               <tbody id="28"></tbody>
+               <tbody id="29"></tbody>
+               <tbody id="30"></tbody>
+               <tbody id="31"></tbody>
+               <tbody id="32"></tbody>
+               <tbody id="33"></tbody>
+               <tbody id="34"></tbody>
+               <tbody id="35"></tbody>
+               <tbody id="36"></tbody>
+               <tbody id="37"></tbody>
+               <tbody id="38"></tbody>
+               <tbody id="39"></tbody>
+               <tbody id="40"></tbody>
+               <tbody id="41"></tbody>
+               <tbody id="42"></tbody>
+               <tbody id="43"></tbody>
+               <tbody id="44"></tbody>
+               <tbody id="45"></tbody>
+               <tbody id="46"></tbody>
+               <tbody id="47"></tbody>
+               <tbody id="48"></tbody>
+               <tbody id="49"></tbody>
+               <tbody id="50"></tbody>
+               <tbody id="51"></tbody>
+               <tbody id="52"></tbody>
+               <tbody id="53"></tbody>
+            </table>
+      
+        </div>
+    </div> 
+ </div>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="assets/js/history.js"></script>
+
+</body>
+</html>

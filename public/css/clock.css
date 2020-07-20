@@ -1,0 +1,35 @@
+
+#clock {
+    font-weight: bolder;
+    border: 3px groove #c3c3d2;
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    left:1284px;
+    top: 123px;
+    transform: translate(-50%, -50%);
+    color: #13181a;
+    height: 74px;
+    background-color: #c3c3d2;
+    /* ! text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0); */
+    width: 160px;
+}
+        .time {
+            letter-spacing: 0.05em;
+            font-size: 29px;
+            padding: 5px 0;
+            
+            font-family: Arial;
+        }
+        .date {
+            letter-spacing: 0.1em;
+            font-size: 12px;
+            /*! font-weight: bold; */
+            font-family: Arial;
+        }
+        .text {
+            letter-spacing: 0.1em;
+            font-size: 12px;
+            padding: 20px 0 0;
+        }
