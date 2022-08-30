@@ -22,7 +22,7 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
-    "node-opcua": "^2.5.12",
+    "node-opcua": "^2.74.0",
     "node-opcua-crypto": "^1.3.2",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
